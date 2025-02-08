@@ -1,4 +1,4 @@
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+const BACKEND_URL = "https://recipe-generator-1-192f.onrender.com" || 'http://localhost:3001';
 
 export async function generateRecipe(ingredients) {
     try {
