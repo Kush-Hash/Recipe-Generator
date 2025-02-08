@@ -19,7 +19,7 @@ const HF_API_KEY = process.env.HF_API_KEY;
 app.use(cors({
     origin: [
         'http://localhost:5173',  // Local development
-        'https://recipe-generator-9j1p.onrender.com', // Add your Render frontend URL here
+        'https://recipe-generator-2-gjky.onrender.com', // Add your Render frontend URL here
     ],
     methods: ['GET', 'POST'],
     credentials: true
