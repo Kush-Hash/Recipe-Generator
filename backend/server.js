@@ -15,7 +15,16 @@ const PORT = process.env.PORT || 3001;
 const HF_API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1";
 const HF_API_KEY = process.env.HF_API_KEY;
 
-app.use(cors());
+// Updated CORS configuration for Render deployment
+app.use(cors({
+    origin: [
+        'http://localhost:5173',  // Local development
+        'https://recipe-generator-9j1p.onrender.com', // Add your Render frontend URL here
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
+
 app.use(express.json());
 
 // Validate API key on startup
@@ -113,6 +122,12 @@ app.post("/generate-recipe", async (req, res) => {
     }
 });
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+    res.json({ status: "healthy" });
+});
+
+// Test API key endpoint
 app.get("/test-api-key", (req, res) => {
     if (HF_API_KEY) {
         res.json({ status: "API key is configured" });
